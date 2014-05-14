@@ -2,8 +2,9 @@ class Datastreams::DcMetadata < ActiveFedora::OmDatastream
 
   set_terminology do |t|
     t.root(path: "fields")
-    t.mets(index_as: :stored_searchable)
-    t.name(index_as: :stored_searchable)
+    t.title(index_as: :stored_searchable)
+    t.creator(index_as: :stored_searchable)
+    t.subject(index_as: :stored_searchable)
   end
 
   def self.xml_template

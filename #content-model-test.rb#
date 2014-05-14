@@ -1,0 +1,20 @@
+#! /usr/bin/ruby
+
+# Setup new EadMetadata object
+eds = EadMetadata.new
+eds.eadheader = "empty"
+eds.eadid = "MS004"
+
+# Setup new Ead object
+e = Ead.create(eadheader: 'empty', eadid: 'MS004')
+
+# Test outputs from EadMetadata and Ead objects
+puts e.eadMetadata
+puts e.eadheader
+puts e.eadid
+puts e.eadMetadata.eadheader
+puts e.eadMetadata.eadid
+puts e.to_solr
+puts e.eadMetadata.to_solr
+
+# Setup new D

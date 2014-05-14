@@ -1,9 +1,10 @@
-class Datastreams::MetsMetadata < ActiveFedora::OmDatastream
+class Datastreams::ModsMetadata < ActiveFedora::OmDatastream
 
   set_terminology do |t|
     t.root(path: "fields")
-    t.creator(index_as: :stored_searchable)
-    t.subject(index_as: :stored_searchable)
+    t.title(index_as: :stored_searchable)
+    t.genre(index_as: :stored_searchable)
+    t.identifier(index_as: :stored_searchable)
   end
 
   def self.xml_template
