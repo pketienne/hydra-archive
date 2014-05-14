@@ -1,4 +1,4 @@
-class Datastreams::ModsMetadata < ActiveFedora::OmDatastream
+class ModsMetadata < ActiveFedora::OmDatastream
 
   set_terminology do |t|
     t.root(path: "fields")
