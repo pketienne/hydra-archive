@@ -1,9 +1,7 @@
-class Ead < ActiveFedora::Base
-  has_metadata 'eadMetadata', type: EadMetadata
+class Book < ActiveFedora::Base
+  has_metadata 'descMetadata', type: BookMetadata
 
-  has_many :items, :property=> :is_part_of
-
-  has_attributes :eadheader, datastream: 'eadMetadata', multiple: false
-  has_attributes :eadid, datastream: 'eadMetadata', multiple: false
+  has_attributes :title, datastream: 'descMetadata', multiple: false
+  has_attributes :author, datastream: 'descMetadata', multiple: false
 
 end

@@ -1,13 +1,13 @@
-class EadMetadata < ActiveFedora::OmDatastream
+class BookMetadata < ActiveFedora::OmDatastream
 
   set_terminology do |t|
-    t.root(path: "ead")
-    t.eadheader(index_as: :stored_searchable)
-    t.eadid(index_as: :stored_searchable)
+    t.root(path: "fields")
+    t.title
+    t.author
   end
 
   def self.xml_template
-    Nokogiri::XML.parse("<ead/>")
+    Nokogiri::XML.parse("<fields/>")
   end
 
   def prefix
