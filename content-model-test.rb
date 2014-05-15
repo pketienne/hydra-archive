@@ -18,18 +18,20 @@ puts ead.to_solr
 puts ead.eadMetadata.to_solr
 
 # Setup new MetsMetadata datastream
-itemmetsds = MetsMetadata.new
-itemmetsds.mets = "ms004-001"
-itemmetsds.name = "Archives and Records Management"
+itemfoods = FooMetadata.new
+itemfoods.mets = "ms004-001"
+itemfoods.name = "Archives and Records Management"
 
-item = Item.create()
-# item = Item.create(mets: "ms004-001", name: "Archives and Records Management")
+# item = Item.create()
+item = Item.create(mets: "ms004-001", name: "Archives and Records Management")
 
 # Setup new ModsMetadata datastream
 # itemmodsds = ModsMetadata.new
 # itemmodsds.title = "Testimony of Minnie B. Ware"
 # itemmodsds.genre = "Testimony"
 # itemmodsds.identifier = "MS004"
+
+# item = Item.create()
 
 # Setup new DcMetadata datastream
 # itemdcds = DcMetadata.new
@@ -41,9 +43,9 @@ item = Item.create()
 # item = Item.create(mets: "ms004-001", name: "Archives and Records Management", title: "Testimony of Minnie B. Ware", genre: "Testimony", identifier: "MS004", creator: "Moorehead, Rosemary", subject: "Student Life")
 
 # Test outputs from MetsMetadata
-# puts item.metsMetadata
-# puts item.metsMetadata.mets
-# puts item.metsMetadata.name
+puts item.fooMetadata
+puts item.fooMetadata.mets
+puts item.fooMetadata.name
 
 # Test outputs from ModsMetadata
 # puts item.modsMetadata
