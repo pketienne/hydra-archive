@@ -18,8 +18,25 @@ puts b.descMetadata.author
 puts b.to_solr
 puts b.descMetadata.to_solr
 
-p = Page.new(number: 1, text: "Happy families are all alike; every unhappy family is unhappy in its own way.")
+# Setup new PageMetadata datastream
+pm = PageMetadata.new
+pm.number = "1"
+pm.text = "Happy families are all alike; every unhappy family is unhappy in its own way."
+
+# Setup new Page object
+p = Page.create(number: 1, text: "Happy families are all alike; every unhappy family is unhappy in its own way.")
+
+# Associate Page with previous Book and save
 p.book = b
 p.save
 b.reload
-puts b.pages
+
+# Display details about newly created datastream and object
+puts pm.to_xml
+puts p.descMetadata
+puts p.title
+puts p.author
+puts p.descMetadata.title
+puts p.descMetadata.author
+puts p.to_solr
+puts p.descMetadata.to_solr
