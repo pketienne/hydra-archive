@@ -34,6 +34,8 @@ p.letterMetadata.author = "Jordan, Robert"
 
 # Associate Page with previous Ead and save
 p.ead = e
+p.save
+e.reload
 
 # Commence logging
 puts "\n ----- LOGGING -----\n\n"
