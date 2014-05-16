@@ -1,4 +1,4 @@
-class BookMetadata < ActiveFedora::OmDatastream
+class EadMetadata < ActiveFedora::OmDatastream
 
   set_terminology do |t|
     t.root(path: "fields")
