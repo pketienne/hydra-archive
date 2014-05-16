@@ -1,4 +1,4 @@
-class Datastreams::PageMetadata < ActiveFedora::OmDatastream
+class Datastreams::MetsMetadata < ActiveFedora::OmDatastream
 
   set_terminology do |t|
     t.root(path: "fields")
