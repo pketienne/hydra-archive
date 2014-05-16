@@ -15,5 +15,5 @@
 /log/*.log
 /tmp
 
-# Ignore Jetty directory
+# Ignore Jetty
 /jetty
