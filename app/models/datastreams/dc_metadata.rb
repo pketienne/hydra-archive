@@ -1,17 +1,18 @@
 class Datastreams::DcMetadata < ActiveFedora::OmDatastream
 
   set_terminology do |t|
-    t.root(path: "fields")
+    t.root(path: "dc")
     t.title(index_as: :stored_searchable)
     t.author(index_as: :stored_searchable)
   end
 
   def self.xml_template
-    Nokogiri::XML.parse("<fields/>")
+    Nokogiri::XML.parse("<dc/>")
   end
 
   def prefix
-    '' # add a prefix for solr index terms if you need to namespace identical terms in multiple data streams 
+    # set a datastream prefix if you need to namespace terms that might occur in multiple data streams 
+    ""
   end
 
 end
