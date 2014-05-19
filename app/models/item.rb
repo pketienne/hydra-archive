@@ -2,6 +2,8 @@ class Item < ActiveFedora::Base
   has_metadata 'metsMetadata', type: Datastreams::MetsMetadata
   has_metadata 'modsMetadata', type: Datastreams::ModsMetadata
   has_metadata 'dcMetadata', type: Datastreams::DcMetadata
+  has_metadata 'metsmodsMetadata', type: Datastreams::MetsmodsMetadata
+  has_metadata 'metsdcMetadata', type: Datastreams::MetsdcMetadata
 
   belongs_to :ead, :property=> :is_part_of
 
@@ -13,5 +15,11 @@ class Item < ActiveFedora::Base
 
   has_attributes :title, datastream: 'dcMetadata', multiple: false
   has_attributes :author, datastream: 'dcMetadata', multiple: false
+
+  has_attributes :title, datastream: 'metsmodsMetadata', multiple: false
+  has_attributes :author, datastream: 'metsmodsMetadata', multiple: false
+
+  has_attributes :title, datastream: 'metsdcMetadata', multiple: false
+  has_attributes :author, datastream: 'metsdcMetadata', multiple: false
 
 end
