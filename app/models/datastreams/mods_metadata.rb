@@ -7,7 +7,27 @@ class Datastreams::ModsMetadata < ActiveFedora::OmDatastream
   end
 
   def self.xml_template
-    Nokogiri::XML.parse("<mods/>")
+    builder = Nokogiri::XML::Builder.new do |xml|
+      xml.mods {
+        xml.titleInfo
+        xml.typeOfResource
+        xml.genre(:authority=>"")
+        xml.originInfo
+        xml.language
+        xml.physicalDescription
+        xml.abstract
+        xml.relatedItem(:type=>"", :displayLabel=>"")
+        xml.identifier
+        xml.accessCondition(:type=>"copyright owner")
+        xml.accessCondition(:type=>"status")
+        xml.accessCondition(:type=>"statement")
+        xml.name(:type=>"personal")
+        xml.subject(:authority=>"")
+        xml.accessCondition(:type=>"public status")
+      }
+    end
+    return builder.doc
+
   end
 
   def prefix
