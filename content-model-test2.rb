@@ -1,66 +1,101 @@
 #! /usr/bin/ruby
 
-# Setup new BookMetadata datastream
-bm = BookMetadata.new
-bm.title = "The Eye of the World"
-bm.author = "Jordan, Robert"
+# Setup new EadMetadata datastream
+eadds = EadMetadata.new
+eadds.title = "The Eye of the World"
+eadds.author = "Jordan, Robert"
 
-# Setup new Book object
-b = Book.create(title: "The Eye of the World", author: "Jordan, Robert")
-
-# Display details about newly created datastream and object
-puts bm.to_xml
-puts b.descMetadata
-puts b.title
-puts b.author
-puts b.descMetadata.title
-puts b.descMetadata.author
-puts b.to_solr
-puts b.descMetadata.to_solr
+# Setup new Ead object
+e = Ead.create(title: "The Eye of the World", author: "Jordan, Robert")
 
 # Setup new PageMetadata datastream
-pm = Datastreams::PageMetadata.new
-pm.title = "blathering"
-pm.author = "Happy families are all alike; every unhappy family is unhappy in its own way."
+metsds = Datastreams::MetsMetadata.new
+metsds.title = "The Great Hunt"
+metsds.author = "Jordan, Robert"
 
 # Setup new WordMetadata datastream
-wm = Datastreams::WordMetadata.new
-wm.title = "blatherskite"
-wm.author = "I don't like unhappy families."
+modsds = Datastreams::ModsMetadata.new
+modsds.title = "The Dragon Reborn"
+modsds.author = "Jordan, Robert"
 
-# Setup new WordMetadata datastream
-lm = Datastreams::LetterMetadata.new
-lm.title = "blatherskite"
-lm.author = "I don't like unhappy families."
+# Setup new LetterMetadata datastream
+dcds = Datastreams::DcMetadata.new
+dcds.title = "The Fires of Heaven"
+dcds.author = "Jordan, Robert"
 
 # Setup new Page object
-p = Page.create()
-p.pageMetadata.title = "blathering"
-p.pageMetadata.author = "Happy families are all alike; every unhappy family is unhappy in its own way."
-p.wordMetadata.title = "blatherskite"
-p.wordMetadata.author = "I don't like unhappy families."
-p.letterMetadata.title = "foobar"
-p.letterMetadata.author = "I think I can, I think I can."
+i = Item.create()
+i.metsMetadata.title = "The Great Hunt"
+i.metsMetadata.author = "Jordan, Robert"
+i.modsMetadata.title = "The Dragon Reborn"
+i.modsMetadata.author = "Jordan, Robert"
+i.dcMetadata.title = "The Fires of Heaven"
+i.dcMetadata.author = "Jordan, Robert"
 
-# Associate Page with previous Book and save
-p.book = b
-p.save
-b.reload
+# Associate Page with previous Ead and save
+i.ead = e
+i.save
+e.reload
 
-# Display details about newly created datastream and object
-puts pm.to_xml
-puts p.pageMetadata
-puts p.wordMetadata
-puts p.letterMetadata
-puts p.title
-puts p.author
-puts p.pageMetadata.title
-puts p.pageMetadata.author
-puts p.wordMetadata.title
-puts p.wordMetadata.author
-puts p.letterMetadata.title
-puts p.letterMetadata.author
-puts p.to_solr
-puts p.pageMetadata.to_solr
-puts p.wordMetadata.to_solr
-puts p.letterMetadata.to_solr
+# Commence logging
+puts "\n ----- LOGGING -----\n\n"
+
+# Log EadMetadata object to console
+puts " ----- Log EadMetadata object to console -----\n"
+puts eadds
+puts eadds.title
+puts eadds.author
+puts eadds.to_solr
+puts eadds.to_xml
+puts "\n\n"
+
+# Log Ead object to console
+puts " ----- Log Ead object to console -----\n"
+puts e
+puts e.title
+puts e.author
+puts e.eadMetadata.title
+puts e.eadMetadata.author
+puts e.to_solr
+puts "\n\n"
+
+# Log MetsMetadata object to console
+puts " ----- Log MetsMetadata object to console -----\n"
+puts metsds
+puts metsds.title
+puts metsds.author
+puts metsds.to_solr
+puts metsds.to_xml
+puts "\n\n"
+
+# Log ModsMetadata object to console
+puts " ----- Log ModsMetadata object to console -----\n"
+puts modsds
+puts modsds.title
+puts modsds.author
+puts modsds.to_solr
+puts modsds.to_xml
+puts "\n\n"
+
+# Log LetterMetadata object to console
+puts " ----- Log DcMetadata object to console -----\n"
+puts dcds
+puts dcds.title
+puts dcds.author
+puts dcds.to_solr
+puts dcds.to_xml
+puts "\n\n"
+
+# Log Item object to console
+puts " ----- Log Item object to console -----\n"
+puts i
+puts i.title
+puts i.author
+puts i.metsMetadata.title
+puts i.metsMetadata.author
+puts i.modsMetadata.title
+puts i.modsMetadata.author
+puts i.dcMetadata.title
+puts i.dcMetadata.author
+puts i.to_solr
+puts "\n\n"
