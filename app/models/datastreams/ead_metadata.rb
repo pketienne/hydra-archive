@@ -2,8 +2,11 @@ class EadMetadata < ActiveFedora::OmDatastream
 
   set_terminology do |t|
     t.root(path: "ead")
-    t.title(index_as: :stored_searchable)
-    t.author(index_as: :stored_searchable)
+    t.eadheader {
+      t.eadid(index_as: :stored_searchable)
+    }
+    t.archdesc {
+    }
   end
 
   def self.xml_template

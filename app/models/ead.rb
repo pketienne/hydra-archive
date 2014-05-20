@@ -3,7 +3,6 @@ class Ead < ActiveFedora::Base
 
   has_many :items, :property=> :is_part_of
 
-  has_attributes :title, datastream: 'eadMetadata', multiple: false
-  has_attributes :author, datastream: 'eadMetadata', multiple: false
+  has_attributes :eadid, datastream: 'eadMetadata', multiple: false
 
 end

@@ -2,11 +2,12 @@
 
 # Setup new EadMetadata datastream
 eadds = EadMetadata.new
-eadds.title = "The Eye of the World"
-eadds.author = "Jordan, Robert"
+eadds.ng_xml.xpath("//eadid") = "MS004"
 
 # Setup new Ead object
-e = Ead.create(title: "The Eye of the World", author: "Jordan, Robert")
+e = Ead.create()
+e.eadid = "MS004"
+e.save
 
 # Setup new MetsMetadata datastream
 metsds = Datastreams::MetsMetadata.new
@@ -57,8 +58,7 @@ puts "\n ----- LOGGING -----\n\n"
 # Log EadMetadata object to console
 puts " ----- Log EadMetadata object to console -----\n"
 puts eadds
-puts eadds.title
-puts eadds.author
+puts eadds.eadid
 puts eadds.to_solr
 puts eadds.to_xml
 puts "\n\n"
@@ -66,10 +66,8 @@ puts "\n\n"
 # Log Ead object to console
 puts " ----- Log Ead object to console -----\n"
 puts e
-puts e.title
-puts e.author
-puts e.eadMetadata.title
-puts e.eadMetadata.author
+puts e.eadid
+puts e.eadMetadata.eadid
 puts e.to_solr
 puts "\n\n"
 
@@ -101,7 +99,7 @@ puts dcds.to_xml
 puts "\n\n"
 
 # Log MetsmodsMetadata object to console
-puts " ----- Log DcMetadata object to console -----\n"
+puts " ----- Log MetsmodsMetadata object to console -----\n"
 puts metsmodsds
 puts metsmodsds.title
 puts metsmodsds.author
@@ -109,8 +107,8 @@ puts metsmodsds.to_solr
 puts metsmodsds.to_xml
 puts "\n\n"
 
-# Log DcMetadata object to console
-puts " ----- Log DcMetadata object to console -----\n"
+# Log MetsdcMetadata object to console
+puts " ----- Log MetsdcMetadata object to console -----\n"
 puts metsdcds
 puts metsdcds.title
 puts metsdcds.author
