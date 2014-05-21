@@ -2,6 +2,9 @@
 
 # Setup new EadMetadata datastream
 eadds = EadMetadata.new
+f = File.open("/home/petienne3/Projects/hydra-fulton-bag/MS004-ead.xml")
+eadds.root = Nokogiri::XML(f)
+f.close
 # eadds.eadheader = "blah"
 
 # Setup new Ead object
