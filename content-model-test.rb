@@ -2,11 +2,11 @@
 
 # Setup new EadMetadata datastream
 eadds = EadMetadata.new
-eadds.ng_xml.xpath("//eadid") = "MS004"
+# eadds.eadheader = "blah"
 
 # Setup new Ead object
 e = Ead.create()
-e.eadid = "MS004"
+# e.eadheader = "blah"
 e.save
 
 # Setup new MetsMetadata datastream
@@ -58,7 +58,7 @@ puts "\n ----- LOGGING -----\n\n"
 # Log EadMetadata object to console
 puts " ----- Log EadMetadata object to console -----\n"
 puts eadds
-puts eadds.eadid
+puts eadds.eadheader
 puts eadds.to_solr
 puts eadds.to_xml
 puts "\n\n"
@@ -66,8 +66,8 @@ puts "\n\n"
 # Log Ead object to console
 puts " ----- Log Ead object to console -----\n"
 puts e
-puts e.eadid
-puts e.eadMetadata.eadid
+puts e.eadheader
+puts e.eadMetadata.eadheader
 puts e.to_solr
 puts "\n\n"
 
