@@ -7,6 +7,11 @@ eadds.author = "Herbert, Frank"
 # f = File.open('MS004-ead.xml')
 # eadds.? = Nokogiri::XML(f)
 # f.close
+# Potentially relevant methods:
+# ng_xml, nodeset, node
+# Potentially relevant variables:
+# eadds - @ng_xml
+# e - @ng_xml, @datastream_content, @content
 
 # Setup new Ead object
 e = Ead.create()

@@ -5,6 +5,9 @@ class Item < ActiveFedora::Base
   has_metadata 'metsmodsMetadata', type: Datastreams::MetsmodsMetadata
   has_metadata 'metsdcMetadata', type: Datastreams::MetsdcMetadata
 
+  # pdf, txt, jpg, or tif
+  has_file_datastream "itemContent"
+
   belongs_to :ead, :property=> :is_part_of
 
   has_attributes :title, datastream: 'metsMetadata', multiple: false
