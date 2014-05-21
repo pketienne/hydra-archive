@@ -2,14 +2,16 @@
 
 # Setup new EadMetadata datastream
 eadds = EadMetadata.new
-f = File.open("/home/petienne3/Projects/hydra-fulton-bag/MS004-ead.xml")
-eadds.root = Nokogiri::XML(f)
-f.close
-# eadds.eadheader = "blah"
+eadds.title = "Dune"
+eadds.author = "Herbert, Frank"
+# f = File.open('MS004-ead.xml')
+# eadds.? = Nokogiri::XML(f)
+# f.close
 
 # Setup new Ead object
 e = Ead.create()
-# e.eadheader = "blah"
+e.title = "Dune"
+e.author = "Herbert, Frank"
 e.save
 
 # Setup new MetsMetadata datastream
@@ -61,7 +63,8 @@ puts "\n ----- LOGGING -----\n\n"
 # Log EadMetadata object to console
 puts " ----- Log EadMetadata object to console -----\n"
 puts eadds
-puts eadds.eadheader
+puts eadds.title
+puts eadds.author
 puts eadds.to_solr
 puts eadds.to_xml
 puts "\n\n"
@@ -69,8 +72,8 @@ puts "\n\n"
 # Log Ead object to console
 puts " ----- Log Ead object to console -----\n"
 puts e
-puts e.eadheader
-puts e.eadMetadata.eadheader
+puts e.title
+puts e.author
 puts e.to_solr
 puts "\n\n"
 
@@ -136,3 +139,5 @@ puts i.metsdcMetadata.title
 puts i.metsdcMetadata.author
 puts i.to_solr
 puts "\n\n"
+
+binding.pry
