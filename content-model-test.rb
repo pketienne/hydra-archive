@@ -1,22 +1,17 @@
 #! /usr/bin/ruby
 
 # Setup new EadMetadata datastream
-eadds = EadMetadata.new
-eadds.title = "Dune"
-eadds.author = "Herbert, Frank"
-# f = File.open('MS004-ead.xml')
-# eadds.? = Nokogiri::XML(f)
-# f.close
-# Potentially relevant methods:
-# ng_xml, nodeset, node
-# Potentially relevant variables:
-# eadds - @ng_xml
-# e - @ng_xml, @datastream_content, @content
+# eadds = EadMetadata.new
+file = File.open('ms004-ead.xml')
+eadds = EadMetadata.from_xml(file)
+file.close
+# eadds.eadheader_eadid = "MS004"
 
 # Setup new Ead object
 e = Ead.create()
-e.title = "Dune"
-e.author = "Herbert, Frank"
+e.eadMetadata.content = eadds
+# e.title = "Dune"
+# e.author = "Herbert, Frank"
 e.save
 
 # Setup new MetsMetadata datastream
@@ -68,8 +63,7 @@ puts "\n ----- LOGGING -----\n\n"
 # Log EadMetadata object to console
 puts " ----- Log EadMetadata object to console -----\n"
 puts eadds
-puts eadds.title
-puts eadds.author
+# puts eadds.eadheader_eadid
 puts eadds.to_solr
 puts eadds.to_xml
 puts "\n\n"
@@ -77,8 +71,9 @@ puts "\n\n"
 # Log Ead object to console
 puts " ----- Log Ead object to console -----\n"
 puts e
-puts e.title
-puts e.author
+# puts e.title
+# puts e.author
+puts e.eadMetadata.content
 puts e.to_solr
 puts "\n\n"
 

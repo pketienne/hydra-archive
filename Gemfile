@@ -3,12 +3,6 @@ source 'https://rubygems.org'
 # Use Hydra
 gem 'hydra'
 
-# Use Pry
-gem 'pry'
-
-# Use BetterErrors
-gem 'better_errors'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
@@ -58,4 +52,8 @@ gem "devise-guests", "~> 0.3"
 group :development, :test do
   gem "rspec-rails"
   gem "jettywrapper"
+  gem 'pry'
+  gem 'better_errors'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
 end
