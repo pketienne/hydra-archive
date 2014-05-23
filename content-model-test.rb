@@ -1,7 +1,7 @@
 #! /usr/bin/ruby
 
 # Open file
-file = File.open('MS004-ead.xml')
+file = File.open('../data-fulton-bag/MS004-ead.xml')
 
 # Setup new EadMetadata datastream
 eadds = Datastreams::EadMetadata.from_xml(file)
