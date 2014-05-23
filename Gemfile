@@ -3,12 +3,6 @@ source 'https://rubygems.org'
 # Use Hydra
 gem 'hydra'
 
-# Use Pry
-gem 'pry'
-
-# Use BetterErrors
-gem 'better_errors'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
@@ -41,21 +35,13 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
 gem "devise"
 gem "devise-guests", "~> 0.3"
 group :development, :test do
-  gem "rspec-rails"
-  gem "jettywrapper"
+  gem 'rspec-rails'
+  gem 'jettywrapper'
+  gem 'better_errors'
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
 end
