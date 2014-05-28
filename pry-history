@@ -1,0 +1,833 @@
+load 'content-model-test1.rb'
+quit
+load 'content-model-test1.rb'
+quit
+load 'content-model-test1.rb'
+quit
+load 'content-model-test1.rb'
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+load 'content-model-test1.rb'
+quit
+load 'content-model-test1.rb'
+quit
+load 'content-model-test1.rb'
+quit
+load 'content-model-test1.rb'
+quit
+load 'content-model-test1.rb'
+quit
+load 'content-model-test1.rb'
+quit
+load 'content-model-test1.rb'
+quit
+load 'content-model-test1.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+1+3
+ead
+e
+cd e
+cd ead
+quit
+load 'content-model-test2.rb'
+cd e
+e = Ead.create()
+cd e
+quit
+eadds = EadMetadata.new
+cd eadds
+self
+nesting
+exit
+cd eadds
+ls
+ls -h
+ls -m
+ls -M
+ls
+eadds.to_xml
+quit
+ead
+eadds
+e
+eadds.to_xml
+quit
+load 'content-model-test2.rb'
+exit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test2.rb'
+e = EadMetadata.new
+cd e
+ls
+exit
+e.to_xml
+e.to_solr
+e.ng_xml
+e.save
+quit
+e.save
+load 'content-model-test2.rb'
+eadds = EadMetadata.new
+eadds.ng_xml
+e = eadds
+e.xpath("//eadid")
+e.ng_xml.xpath("//eadid")
+e.ng_xml.xpath("//eadid").to_xml
+e.ng_xml.xpath("//eadid").content = "blatherskite"
+e.ng_xml.xpath("//eadid").node
+e.ng_xml.xpath("//eadid")
+e.ng_xml.xpath("//eadid").to_xml
+cd e
+ls
+ls -h
+ls -m
+ls -l
+ls -c
+cd OM
+ls
+exit
+cd Om
+ls
+quit
+ls
+cd @ng_xml
+ls
+self.pretty_print
+self.pretty_print self
+exit
+quit
+load 'content-model-test2.rb'
+quit
+load 'content-model-test.rb'
+quit
+load 'content-model-test.rb'
+quit
+.pwd
+pwd
+load 'content-model-test.rb'
+quit
+load 'content-model-test.rb'
+quit
+load 'content-model-test.rb'
+cd eadds
+cd e
+load 'content-model-test.rb'
+quit
+load 'content-model-test.rb'
+f = File.new("data-fulton-bag/ms004/ms004-002.pdf")
+i.add_file_datastream(f,controlGroup='X';mimeType=>'application/pdf';dsid=>textds')
+eadds.add_datastream
+e.add_datastream
+load 'content-model-test.rb'
+quit
+load 'content-model-test.rb'
+load 'content-model-test.rb
+'
+load 'content-model-test.rb'
+exit
+load 'content-model-test.rb'
+quit
+load 'content-model-test.rb'
+exit
+load 'content-model-test.rb'
+pry.continue
+exit
+load 'content-model-test.rb'
+cd eadds
+ls
+@content
+ls
+@datastream_content
+@ng_xml
+ls
+@digital_object
+@dsid
+@options
+@ox_namespaces
+@profile
+@default_attributes
+@changed_attributes
+@datastream_content
+edit from_solr
+exit
+load 'content-model-test.rb'
+cd eadds
+ls
+edit from_solr
+edit to_solr
+exit
+cd ead
+ls
+@association_cache
+@changed_attributes
+@datastreams
+@errors
+@inner_object
+ls
+@object_relations
+@previously_changed
+@relationships_loaded
+@validation_context
+cd eadMetadata
+ls
+@content
+@datastream_content
+show-stack
+exit
+show-stack
+exit
+load 'content-model-test.rb"
+exit
+load 'content-model-test.rb'
+quit
+load 'content-model-test.rb'
+show-stack
+show-stack -v
+up
+down
+up
+show-stack
+load 'content-model-test.rb'
+show-stack
+quit
+load 'content-model-test.rb'
+show-stack
+1
+show-stack -c 1
+ead
+frame
+exit
+load 'content-model-test.rb'
+exit
+load 'content-model-test.rb'
+self
+cd eadds
+ls
+@content
+ls
+@datastream_content
+@dsid
+save
+state
+pid
+self.pid
+@datastream_content
+cd ..
+altIds
+super.altIds
+prefix
+cd eadds
+ls
+altIds_change
+run_callback
+run_callbacks
+attribute_missing
+changed
+altIDs_change
+_create_callbacks
+create
+dsLabel
+save
+serialize!
+to_param
+add_child_node
+after_node
+ox_namespaces
+field_mapper
+validate
+content_changed?
+datastream_content
+local_or_remote_content
+ls
+ng_xml
+ls
+ng_xml_changed?
+to_xml
+ls
+xml_loaded
+from_solr
+get_values
+metadata?
+to_solr
+update_values
+cd ..
+cd ead
+ls
+relationships
+update
+edit update
+to_solr
+datastreams
+id
+label
+owner_id
+pid
+state
+attribute_aliases
+ds_specs
+exit
+load 'content-model-test.rb'
+netsting
+nesting
+ls -g
+ls -m
+cd eadds
+ls -m
+ls -M
+ls -p
+ls -q
+ls -v
+ls -g
+ls -l
+ls -c
+ls -i
+ls -i ../ead
+cd ..
+cd ead
+ls -i
+cd ../eadds
+@datastream_content
+@content
+find-method from_xml
+edit from_xml
+edit ActiveFedora::Datastreams::NokogiriDatastreams::ClassMethods#from_xml
+exit-all
+exit
+load 'content-model-test.rb'
+continue
+exit-all
+load 'content-model-test.rb'
+exit
+load 'content-model-test.rb'
+quit
+load 'content-model-test.rb'
+quit
+load 'content-model-test.rb'
+exit
+load 'content-model-test.rb'
+exit
+load 'content-model-test.rb'
+exit
+load 'content-model-test.rb'
+exit
+load 'content-model-test.rb'
+exit
+load 'content-model-test.rb'
+show-stack
+n
+s
+n
+tmpl
+n
+tpl
+self.tmpl
+@tmpl
+ls
+tmpl
+xml
+n
+s
+n
+s
+n
+s
+n
+s
+n
+s
+n
+ls
+@inner_object
+type(@inner_object)
+self.type
+object.class
+class
+  self.class
+self.class
+@inner_object.class
+edit ActiveFedora::UnsavedDigitalObject
+@inner_object.datastreams
+@inner_object
+@inner_object.datastreams.eadMetadata
+@inner_object.datastreams['eadMetadata']
+@inner_object.datastreams['eadMetadata'].to_s
+cd @inner_object.datastreams['eadMetadata']
+ls
+@changed_attributes
+@default_attributes
+@digital_object
+nesting
+@dsid
+@ng_xml
+show-stack
+n
+s
+n
+s
+eadheader
+n
+eadheader
+self.eadheader
+ls
+n
+cd ead
+ls
+@datastreams
+@datastreams['eadMetadata']
+cd @datastreams['eadMetadata']
+ls
+@digital_object
+@digital_object['eadMetadata']
+@digital_object
+s
+n
+nn
+n
+nn
+n
+quit
+exit
+load 'content-model-test.rb'
+n
+cd ../eadds
+cd ..
+exit
+load 'content-model-test.rb'
+cd eadds
+ls
+self.object
+self.class
+ls
+@changed_attributes
+@content
+@datastream_content
+exit
+load 'content-model-test.rb'
+eadds
+exit
+load 'content-model-test.rb'
+eadds
+eadds.content
+eadds.datastream_content
+eadds.datastream_content = eadds.content
+edit datastream_content
+edit eadds.datastream_content
+eadds.@datastream_content
+eadds.datastream_content
+edit @datastream_content
+edit datastream_content
+cd eadds
+ls
+@content
+@datastream_content
+@datastream_content = @content
+self.class
+cd ..
+cd ead
+ls
+@datastreams
+@datastreams['eadMetadata']
+cd @datastreams['eadMetadata']
+ls
+@content
+@datastream_content
+exit
+load 'content-model-test.rb'
+n
+eadds.class
+cd eadds
+ls
+@content
+@datastream_content
+n
+quit
+load 'content-model-test.rb'
+n
+cd eadds
+ls
+@content
+@datastream_content
+n
+s
+cd eadds
+ls
+@content
+@datastream_content
+n
+quit
+exit
+load 'content-model-test.rb'
+quit
+file = File.open('../data-fulton-bag/ms004/ms004-001.xml')
+file
+test = Datastreams::EadMetadata.new
+cd test
+ls
+cd ..
+eadds = Datastreams::EadMetadata.from_xml(file)
+cd eadds
+ls
+eadds.instance_variable_set(:@datastream_content, eadds.instance_variable_get(:@content))
+cd ..
+eadds.instance_variable_set(:@datastream_content, eadds.instance_variable_get(:@content))
+@datastream_content
+eadds.@datastream_content
+cd eadds
+ls
+@content
+@datastream_content
+ead = Ead.new
+cd ..
+ead
+ead = Ead.new
+exit
+file = File.open('../data-fulton-bag/ms004/ms004-001.xml')
+eadds = Datastreams::EadMetadata.from_xml(file)
+eadds.instance_variable_set(:@datastream_content, eadds.instance_variable_get(:@content))
+file.close
+ead = Ead.new
+ead.eadheader = "blatherskite"
+ead.archdesc = "foo"
+ead.save
+exit
+file = File.open('../data-fulton-bag/ms004/ms004-001.xml')
+eadds = Datastreams::EadMetadata.from_xml(file)
+eadds.instance_variable_set(:@datastream_content, eadds.instance_variable_get(:@content))
+eadds.datastream_content = deadds.content
+file.close
+ead = Ead.new
+cd ead
+ls
+@datastreams
+@inner_object
+@datastreams['eadMetadata']
+cd @datastreams['eadMetadata']
+ls
+@digital_object
+cd ..
+ls
+@datastreams
+cd ..
+ls
+ead.eadMetadata.content = quit
+exit
+eadds = Datastreams::EadMetadata.new
+cd eadds
+ls
+cd
+ead = Ead.new
+cd ead
+ls
+file = File.open('../data_fulton_bag/ms004/ms004-001.xml')
+cd ..
+file = File.open('../data_fulton_bag/ms004/ms004-001.xml')
+file = File.open('../data-fulton-bag/ms004/ms004-001.xml')
+eaddsxml = Datastreams::EadMetadata.from_xml(file)
+cd eaddsxml
+ls
+exit
+file = File.open('../data-fulton-bag/ms004/ms004-001.xml')
+eadds = Datastreams::EadMetadata.from_xml(file)
+cd eadds
+ls
+@content
+@datastream_content
+exit
+file.close
+ead = Ead.new
+ead.eadMetadata.content = eadds
+ead.save
+cd ead
+ls
+@datastreams
+@datastreams['eadmetadata']
+@datastreams['eadMetadata']
+cd@datastreams['eadMetadata']
+cd @datastreams['eadMetadata']
+ls
+@content
+@datastream_content
+help
+ls -h
+ls -l
+cd ..
+ls -l
+ls
+ls -i
+exit
+file = File.open('../data-fulton-bag/ms004/ms004-001.xml')
+eadds = Datastreams::EadMetadata.from_xml(file)
+file.close
+ead = Ead.new
+cd ead
+ls -i
+ead.eadMetadata.content = eadds
+cd ..
+ead.eadMetadata.content = eadds
+cd ead
+ls
+cd @datastreams
+ls
+@obj
+exit
+file = File.open('../data-fulton-bag/ms004/ms004-001.xml')
+eadds = Datastreams::EadMetadata.from_xml(file)
+file.close
+ead = Ead.new
+cd ead
+ls -i
+@datastreams
+cd @datastreams['eadMetadata']
+ls
+@digital_object
+cd @digital_object['eadMetadata']
+ls -i
+cd @digital_object
+ls
+nesting
+ls
+@datastreams
+cd @datastreams['eadMetadata']
+ls
+nesting
+@digital_boject
+ls
+@digital_object
+nesting
+@digital_object
+cd @datastreams['eadMetadata']
+ls
+@digital_object
+cd @digital_object
+ls
+cd @datastreams
+ls
+nesting
+ls
+cd ..
+ls
+exit
+exit --all
+exit all
+exit
+ls
+file = File.open('../data-fulton-bag/ms004/ms004-001.xml')
+eadds = Datastreams::EadMetadata.from_xml(file)
+file.close
+cd eadds
+ls
+@content
+cd @datastream_content
+ls
+cd ..
+@content
+@datastream_content
+cd @datastreams
+ls
+self.inspect
+cd ..
+nesting
+ls
+@content
+cd @content
+cd ..
+@datastream_content
+cd @datastream_content
+ls
+cd ..
+ls
+ls -i
+ls
+ls -i
+@content.class
+@datastream_content.class
+@digital_object.class
+@digital_object
+@ng_xml.class
+@changed_attributes.class
+@dsid.class
+@options.class
+@profile.class
+cd ..
+ls
+ead = Ead.new
+cd ead
+ls -i
+@association_cache
+@association_cache.class
+@datastreams.class
+@inner_object
+@inner_object.class
+ls -i
+cd @datastreams
+self.class
+ls -i
+@obj
+cd @obj
+self.class
+nesting
+cd ..
+ll
+ls -i
+cd ..
+ls
+ls @datastreams -i
+ls -i @inner_object
+edit content
+edit @content
+EXIT
+eixt
+exit
+ls
+cd ead
+ls
+eadMetadata
+edit eadMetadata
+@datastreams
+cd @datastreams['eadMetadata']
+ls
+content
+edit content
+edit datastream_content
+exit

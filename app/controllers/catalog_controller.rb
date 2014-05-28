@@ -13,7 +13,7 @@ class CatalogController < ApplicationController
 
   configure_blacklight do |config|
     config.default_solr_params = {
-      :qf => 'title_tesim author_tesim',
+      :qf => 'eadheader_tesim archdesc_tesim',
       :qt => 'search',
       :rows => 10
     }
