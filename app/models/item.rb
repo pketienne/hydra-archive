@@ -1,28 +1,48 @@
 class Item < ActiveFedora::Base
-  has_metadata 'metsMetadata', type: Datastreams::MetsMetadata
-  has_metadata 'modsMetadata', type: Datastreams::ModsMetadata
-  has_metadata 'dcMetadata', type: Datastreams::DcMetadata
-  has_metadata 'metsmodsMetadata', type: Datastreams::MetsmodsMetadata
-  has_metadata 'metsdcMetadata', type: Datastreams::MetsdcMetadata
+  has_metadata 'itemMetadata', type: ItemMetadata
 
-  # pdf, txt, jpg, or tif
-  has_file_datastream "itemContent"
+  # Metadata for Browse Indexes
+  has_attributes :title, datastream: 'itemMetadata', multiple: false
+  has_attributes :dateIssued , datastream: 'itemMetadata', multiple: false
 
-  belongs_to :ead, :property=> :is_part_of
+  # Metadata for Query Results
+  # repeat # has_attributes :title, datastream: 'itemMetadata', multiple: false
+  # repeat # has_attributes :date, datastream: 'itemMetadata', multiple: false
+  has_attributes :documentType, datastream: 'itemMetadata', multiple: false
+  has_attributes :uniqueId, datastream: 'itemMetadata', multiple: false
+  has_attributes :description, datastream: 'itemMetadata', multiple: false
 
-  has_attributes :title, datastream: 'metsMetadata', multiple: false
-  has_attributes :author, datastream: 'metsMetadata', multiple: false
+  # Metadata for Item Record
+  ## Item Details
+  # repeat # has_attributes :title, datastream: 'itemMetadata', multiple: false
+  # repeat # has_attributes :date, datastream: 'itemMetadata', multiple: false
+  # dynamic # has_attributes :creator, datastream: 'itemMetadata', multiple: false
+  # dynamic # has_attributes :interviewee, datastream: 'itemMetadata', multiple: false
+  # repeat # has_attributes :documentType, datastream: 'itemMetadata', multiple: false
+  # repeat # has_attributes :description, datastream: 'itemMetadata', multiple: false
+  has_attributes :language, datastream: 'itemMetadata', multiple: false
+  has_attributes :subject, datastream: 'itemMetadata', multiple: false
 
-  has_attributes :title, datastream: 'modsMetadata', multiple: false
-  has_attributes :author, datastream: 'modsMetadata', multiple: false
+  ## Rights Information
+  has_attributes :copyrightHolder, datastream: 'itemMetadata', multiple: false
+  has_attributes :copyrightStatus, datastream: 'itemMetadata', multiple: false
+  has_attributes :rightsStatement, datastream: 'itemMetadata', multiple: false
 
-  has_attributes :title, datastream: 'dcMetadata', multiple: false
-  has_attributes :author, datastream: 'dcMetadata', multiple: false
+  ## Physical Item Information
+  has_attributes :physicalSize, datastream: 'itemMetadata', multiple: false
+  has_attributes :extent, datastream: 'itemMetadata', multiple: false
+  has_attributes :condition, datastream: 'itemMetadata', multiple: false
+  has_attributes :drawingType, datastream: 'itemMetadata', multiple: false
+  # repeat # has_attributes :uniqueId, datastream: 'itemMetadata', multiple: false
+  has_attributes :collection, datastream: 'itemMetadata', multiple: false
+  has_attributes :box, datastream: 'itemMetadata', multiple: false
+  has_attributes :folder, datastream: 'itemMetadata', multiple: false
 
-  has_attributes :title, datastream: 'metsmodsMetadata', multiple: false
-  has_attributes :author, datastream: 'metsmodsMetadata', multiple: false
-
-  has_attributes :title, datastream: 'metsdcMetadata', multiple: false
-  has_attributes :author, datastream: 'metsdcMetadata', multiple: false
+  ## Available Files
+  has_attributes :type, datastream: 'itemMetadata', multiple: false
+  has_attributes :resolution, datastream: 'itemMetadata', multiple: false
+  has_attributes :fileName, datastream: 'itemMetadata', multiple: false
+  has_attributes :format, datastream: 'itemMetadata', multiple: false
+  has_attributes :size, datastream: 'itemMetadata', multiple: false
 
 end
