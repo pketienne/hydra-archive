@@ -26,48 +26,48 @@ class ItemMetadata < ActiveFedora::OmDatastream
                  :schema => "#{MODS_SCHEMA}",
                  :namespace_prefix=>"mods") {
             t.title_info(:path => "titleInfo") {
-              t.title(index_as: :stored_searchable)
+              t.title(index_as: :stored_searchable) # indexed
             }
-            t.genre(index_as: :stored_searchable)
+            t.genre(index_as: :stored_searchable) # indexed
             t.origin_info(:path => "originInfo") {
               t.date_issued(:path => "dateIssued",
                            :attributes => {:point=>"start"},
-                           index_as: :stored_searchable)
+                           index_as: :stored_searchable) # indexed
             }
             t.language {
-              t.language_term(:path => "languageTerm", index_as: :stored_searchable)
+              t.language_term(:path => "languageTerm", index_as: :stored_searchable) # indexed
             }
             t.physical_description(:path => "physicalDescription") {
               t.extent(index_as: :stored_searchable)
               t.note_condition(:path => "note",
                                :attributes => {:type=>"condition"},
-                               index_as: :stored_searchable)
+                               index_as: :stored_searchable) # indexed
               t.note_source_dimensions(:path => "note",
                              :attributes => {:type=>"source dimensions"},
-                             index_as: :stored_searchable)
+                             index_as: :stored_searchable) # indexed
             }
-            t.abstract(index_as: :stored_searchable)
+            t.abstract(index_as: :stored_searchable) # indexed
             t.related_item(:path => "relatedItem") {
-              t.identifier(index_as: :stored_searchable)
+              t.identifier(index_as: :stored_searchable) # indexed
               t.part {
                 t.detail_box(:path => "detail", :attributes => {:type="box"}) {
-                  t.box_number(:path => "number", index_as: :stored_searchable)
+                  t.box_number(:path => "number", index_as: :stored_searchable) # indexed
                 }
                 t.detail_folder(:path => "detail", :attributes => {:type="folder"}) {
-                  t.folder_number(:path => "number", index_as: :stored_searchable)
+                  t.folder_number(:path => "number", index_as: :stored_searchable) # indexed
                 }
               }
             }
-            t.identifier(index_as: :stored_searchable)
+            t.identifier(index_as: :stored_searchable) # indexed
             t.access_condition_copyright_owner(:path => "accessCondition",
                               :attributes => {:status => "copyright owner"},
-                              index_as: :stored_searchable)
+                              index_as: :stored_searchable) # indexed
             t.access_condition_status(:path => "accessCondition",
                               :attributes => {:status=>"status"},
-                              index_as: :stored_searchable)
+                              index_as: :stored_searchable) # indexed
             t.access_condition_statement(:path => "accessCondition",
                               :attributes => {:status=>"statement"},
-                              index_as: :stored_searchable)
+                              index_as: :stored_searchable) # indexed
             t.name {
               # this section will need to be modified in order to capture appropriate data.
               # See references and proxies area below.
@@ -78,7 +78,7 @@ class ItemMetadata < ActiveFedora::OmDatastream
               }
             }
             t.subject {
-              t.topic(index_as: :stored_searchable)
+              t.topic(index_as: :stored_searchable) # indexed
             }
           }
         }
@@ -91,9 +91,9 @@ class ItemMetadata < ActiveFedora::OmDatastream
           # capturing resolution data. Also, the file elements for the related fileGrp elements
           # are missing for the jpg files.
           # t.resolution(:path => {:attribute => "resolution"}, index_as: :stored_searchable)
-          t.id(:path => {:attribute => "ID"}, index_as: :stored_searchable)
-          t.mimetype(:path => {:attribute => "MIMETYPE"}, index_as: :stored_searchable)
-          t.size(:path => {:attribute => "SIZE"}, index_as: :stored_searchable)
+          t.id(:path => {:attribute => "ID"}, index_as: :stored_searchable) # indexed
+          t.mimetype(:path => {:attribute => "MIMETYPE"}, index_as: :stored_searchable) # indexed
+          t.size(:path => {:attribute => "SIZE"}, index_as: :stored_searchable) # indexed
         }
       }
     }
