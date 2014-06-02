@@ -68,11 +68,14 @@ class ItemMetadata < ActiveFedora::OmDatastream
             t.access_condition_statement(:path => "accessCondition",
                               :attributes => {:status=>"statement"},
                               index_as: :stored_searchable)
-            t.name_creator {
-              t.display_form(:path => "displayForm", index_as: :stored_searchable)
-            }
-            t.name_interviewee {
-              t.display_form(:path => "displayForm", index_as: :stored_searchable)
+            t.name {
+              # this section will need to be modified in order to capture appropriate data.
+              # See references and proxies area below.
+              t.role {
+                t.role_term(:path => "roleTerm")
+                t.name_part(:path => "namePart")
+                t.display_form(:path => "displayFrom")
+              }
             }
             t.subject {
               t.topic(index_as: :stored_searchable)
@@ -84,6 +87,9 @@ class ItemMetadata < ActiveFedora::OmDatastream
     t.file_sec(:path => "fileSec") {
       t.file_grp(:path => "fileGrp") {
         t.file {
+          # The resolution attribute does not yet exist but would be a sufficient solution for
+          # capturing resolution data. Also, the file elements for the related fileGrp elements
+          # are missing for the jpg files.
           # t.resolution(:path => {:attribute => "resolution"}, index_as: :stored_searchable)
           t.id(:path => {:attribute => "ID"}, index_as: :stored_searchable)
           t.mimetype(:path => {:attribute => "MIMETYPE"}, index_as: :stored_searchable)
@@ -91,6 +97,15 @@ class ItemMetadata < ActiveFedora::OmDatastream
         }
       }
     }
+
+    # References section
+    t.name_creator(:ref => :name, :path => 'role[roleTerm = "creator"]')
+    t.name_interviewee(:ref => :name, :path => 'role[roleTerm = "Interviewee"]')
+    
+    # Proxies section
+    t.creator(:proxy => [:name_creator, :role, :role_term])
+    t.interviewee(:proxy => [:name_intervieww, :role, :role_term])
+
   end
 
   def self.xml_template
