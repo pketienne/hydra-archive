@@ -68,7 +68,10 @@ class ItemMetadata < ActiveFedora::OmDatastream
             t.access_condition_statement(:path => "accessCondition",
                               :attributes => {:status=>"statement"},
                               index_as: :stored_searchable)
-            t.name {
+            t.name_creator {
+              t.display_form(:path => "displayForm", index_as: :stored_searchable)
+            }
+            t.name_interviewee {
               t.display_form(:path => "displayForm", index_as: :stored_searchable)
             }
             t.subject {
