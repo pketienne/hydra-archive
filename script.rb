@@ -2,7 +2,7 @@
 
 # Setup new EadMetadata datastream
 # eadds = EadMetadata.new
-file = File.open('ms004-ead.xml')
+file = File.open('../data-fulton-bag/ms004-ead.xml')
 eadds = EadMetadata.from_xml(file)
 file.close
 # eadds.eadheader_eadid = "MS004"
