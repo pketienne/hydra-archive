@@ -1,148 +1,120 @@
 #! /usr/bin/ruby
 
-# Setup new EadMetadata datastream
-eadds = EadMetadata.new
-eadds.title = "Dune"
-eadds.author = "Herbert, Frank"
-# f = File.open('MS004-ead.xml')
-# eadds.? = Nokogiri::XML(f)
-# f.close
-# Potentially relevant methods:
-# ng_xml, nodeset, node
-# Potentially relevant variables:
-# eadds - @ng_xml
-# e - @ng_xml, @datastream_content, @content
+# Setup a set of records to use as samples
+record_set = [{:type => "ead",
+                :metadata => "MS004-ead.xml"},
+              {:type => "ead",
+                :metadata => "VAM004-ead.xml"},
+              {:type => "ms",
+                :metadata => "001.xml",
+                :contents => ["001.pdf", "b001.tif", "b001a.tif", "b001b.tif", "b001c.tif",
+                              "b001d.tif", "b001_75.jpg", "b001_300.jpg", "b001_thumb.jpg"]},
+              {:type => "ms",
+                :metadata => "002.xml",
+                :contents => ["002.pdf", "b002.tif", "b002a.tif", "b002b.tif", "b002c.tif",
+                              "b002d.tif", "b002_75.jpg", "b002_300.jpg", "b002_thumb.jpg"]},
+              {:type => "ms",
+                :metadata => "003.xml",
+                :contents => ["003.pdf", "b003.tif", "b003a.tif", "b003b.tif", "b003_75.jpg",
+                              "b003_300.jpg", "b003_thumb.jpg"]},
+              {:type => "ms",
+                :metadata => "004.xml",
+                :contents => ["004.pdf", "b004.tif", "b004a.tif", "b004b.tif", "b004_75.jpg",
+                              "b004_300.jpg", "b003_thumb.jpg"]},
+              {:type => "vam",
+                :metadata => "002.xml",
+                :contents => ["002_75.jpg", "002_300.jpg", "002_thumb.jpg"]},
+              {:type => "vam",
+                :metadata => "003.xml",
+                :contents => ["003_75.jpg", "003_300.jpg", "003_thumb.jpg"]},
+              {:type => "vam",
+                :metadata => "004.xml",
+                :contents => ["004_75.jpg", "004_300.jpg", "004_thumb.jpg"]},
+              {:type => "vam",
+                :metadata => "005.xml",
+                :contents => ["005_75.jpg", "005_300.jpg", "005_thumb.jpg"]}
+             ]
 
-# Setup new Ead object
-e = Ead.create()
-e.title = "Dune"
-e.author = "Herbert, Frank"
-e.save
 
-# Setup new MetsMetadata datastream
-metsds = Datastreams::MetsMetadata.new
-metsds.title = "The Great Hunt"
-metsds.author = "Jordan, Robert"
+# Define the RecordParser class
+class RecordParser
+ 
+  def initialize(record_set)
+    @record_set = record_set
+    @records = []
+    self.parse
+  end
 
-# Setup new ModsMetadata datastream
-modsds = Datastreams::ModsMetadata.new
-modsds.title = "The Dragon Reborn"
-modsds.author = "Jordan, Robert"
+  def parse
+    @record_set.each do |i|
+      if i[:contents]
+        @records << Record.new(i[:type], i[:metadata], i[:contents])
+      else
+        @records << Record.new(i[:type], i[:metadata])
+      end
+    end
+  end
 
-# Setup new DcMetadata datastream
-dcds = Datastreams::DcMetadata.new
-dcds.title = "The Fires of Heaven"
-dcds.author = "Jordan, Robert"
+end
 
-# Setup new MetsmodsMetadata datastream
-metsmodsds = Datastreams::MetsmodsMetadata.new
-metsmodsds.title = "The Fires of Heaven"
-metsmodsds.author = "Jordan, Robert"
 
-# Setup new MetsdcMetadata datastream
-metsdcds = Datastreams::MetsdcMetadata.new
-metsdcds.title = "The Fires of Heaven"
-metsdcds.author = "Jordan, Robert"
+# Define the Record class
+class Record
 
-# Setup new Item object
-i = Item.create()
-i.metsMetadata.title = "The Great Hunt"
-i.metsMetadata.author = "Jordan, Robert"
-i.modsMetadata.title = "The Dragon Reborn"
-i.modsMetadata.author = "Jordan, Robert"
-i.dcMetadata.title = "The Shadow Rising"
-i.dcMetadata.author = "Jordan, Robert"
-i.metsmodsMetadata.title = "The Fires of Heaven"
-i.metsmodsMetadata.author = "Jordan, Robert"
-i.metsdcMetadata.title = "Lord of Chaos"
-i.metsdcMetadata.author = "Jordan, Robert"
+  # Constants for file paths
+  ROOT_PREFIX = '../data-fulton-bag'
+  VAM_PREFIX = 'vam004/vam004'
+  MS_PREFIX = 'ms004/ms004'
 
-# Associate Item with previous Ead and save
-i.ead = e
-i.save
-e.reload
+  def initialize(type, metadata, contents = nil)
+    @type = type
+    @metadata = metadata
+    @contents = contents
+    @item = nil
+    @metadata_datastream
+    @content_datastreams = []
+    
+    # Working with paths here is a little sketchy, but only because I can't at this point
+    # read info from the filesystem but instead have to use the above record_set. This will
+    # become cleaner when I refactor the code toward the batch import tool goals.
+    case type
+    when "ead"
+      path = "#{ROOT_PREFIX}/#{@metadata}"
+      self.create_om_datastream(path, EadMetadata)
+      self.create_base(Ead, "eadMetadata")
+    when "ms"
+      metadata_path = "#{ROOT_PREFIX}/#{MS_PREFIX}-#{@metadata}"
+      self.create_om_datastream(path, ItemMetadata)
+      self.create_base(Item, "itemMetadata")
+      self.populate_content_datastreams(path)
+    when "vam"
+      metadata_path = "#{ROOT_PREFIX}/#{VAM_PREFIX}-#{@metadata}"
+      self.create_om_datastream(path, ItemMetadata)
+      self.create_base(Item, "itemMetadata")
+      self.populate_content_datastreams(path)
+    end
 
-# Commence logging
-puts "\n ----- LOGGING -----\n\n"
+    @item.save
+  end
 
-# Log EadMetadata object to console
-puts " ----- Log EadMetadata object to console -----\n"
-puts eadds
-puts eadds.title
-puts eadds.author
-puts eadds.to_solr
-puts eadds.to_xml
-puts "\n\n"
+  def create_om_datastream(path, metadata_klass)
+    file = File.open(path)
+    @metadata_datastream = metadata_klass.from_xml(file)
+    file.close
+  end
 
-# Log Ead object to console
-puts " ----- Log Ead object to console -----\n"
-puts e
-puts e.title
-puts e.author
-puts e.to_solr
-puts "\n\n"
+  def create_base(klass, stream_name)
+    @item = klass.new
+    @item.datastreams[stream_name].content = @metadata_datastream.content
+  end
 
-# Log MetsMetadata object to console
-puts " ----- Log MetsMetadata object to console -----\n"
-puts metsds
-puts metsds.title
-puts metsds.author
-puts metsds.to_solr
-puts metsds.to_xml
-puts "\n\n"
+  def populate_content_datastreams(path)
+    @contents.each do |i|
+      path = "#{path}-#{i}"
+      @item.stream_name.add_file_datastream(content_path)
+    end
+  end
 
-# Log ModsMetadata object to console
-puts " ----- Log ModsMetadata object to console -----\n"
-puts modsds
-puts modsds.title
-puts modsds.author
-puts modsds.to_solr
-puts modsds.to_xml
-puts "\n\n"
+end
 
-# Log DcMetadata object to console
-puts " ----- Log DcMetadata object to console -----\n"
-puts dcds
-puts dcds.title
-puts dcds.author
-puts dcds.to_solr
-puts dcds.to_xml
-puts "\n\n"
-
-# Log MetsmodsMetadata object to console
-puts " ----- Log MetsmodsMetadata object to console -----\n"
-puts metsmodsds
-puts metsmodsds.title
-puts metsmodsds.author
-puts metsmodsds.to_solr
-puts metsmodsds.to_xml
-puts "\n\n"
-
-# Log MetsdcMetadata object to console
-puts " ----- Log MetsdcMetadata object to console -----\n"
-puts metsdcds
-puts metsdcds.title
-puts metsdcds.author
-puts metsdcds.to_solr
-puts metsdcds.to_xml
-puts "\n\n"
-
-# Log Item object to console
-puts " ----- Log Item object to console -----\n"
-puts i
-puts i.title
-puts i.author
-puts i.metsMetadata.title
-puts i.metsMetadata.author
-puts i.modsMetadata.title
-puts i.modsMetadata.author
-puts i.dcMetadata.title
-puts i.dcMetadata.author
-puts i.metsmodsMetadata.title
-puts i.metsmodsMetadata.author
-puts i.metsdcMetadata.title
-puts i.metsdcMetadata.author
-puts i.to_solr
-puts "\n\n"
-
-binding.pry
+record_parser = RecordParser.new(record_set)
