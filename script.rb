@@ -36,21 +36,33 @@ record_set = [{:type => "ead",
              ]
 
 
+# Setup a better organized set of samples
+record_set = [
+              :root_path => "/home/petienne3/Projects",
+              [
+               :folder => "/data-fulton-bag",
+               :files => ["MS004-ead.xml", "VAM004-ead.xml"]
+              {
+                
+              }
+             ]
+
+
+
 # Define the RecordParser class
 class RecordParser
  
   def initialize(record_set)
     @record_set = record_set
-    @records = []
     self.parse
   end
 
   def parse
     @record_set.each do |i|
       if i[:contents]
-        @records << Record.new(i[:type], i[:metadata], i[:contents])
+        Record.new(i[:type], i[:metadata], i[:contents])
       else
-        @records << Record.new(i[:type], i[:metadata])
+        Record.new(i[:type], i[:metadata])
       end
     end
   end
@@ -72,16 +84,11 @@ class Record
     @contents = contents
     @item = nil
     @metadata_datastream
-    @content_datastreams = []
     
     # Working with paths here is a little sketchy, but only because I can't at this point
     # read info from the filesystem but instead have to use the above record_set. This will
     # become cleaner when I refactor the code toward the batch import tool goals.
     case type
-    when "ead"
-      path = "#{ROOT_PREFIX}/#{@metadata}"
-      self.create_om_datastream(path, EadMetadata)
-      self.create_base(Ead, "eadMetadata")
     when "ms"
       metadata_path = "#{ROOT_PREFIX}/#{MS_PREFIX}-#{@metadata}"
       self.create_om_datastream(path, ItemMetadata)
@@ -92,6 +99,10 @@ class Record
       self.create_om_datastream(path, ItemMetadata)
       self.create_base(Item, "itemMetadata")
       self.populate_content_datastreams(path)
+    when "ead"
+      path = "#{ROOT_PREFIX}/#{@metadata}"
+      self.create_om_datastream(path, EadMetadata)
+      self.create_base(Ead, "eadMetadata")
     end
 
     @item.save
@@ -111,10 +122,19 @@ class Record
   def populate_content_datastreams(path)
     @contents.each do |i|
       path = "#{path}-#{i}"
-      @item.stream_name.add_file_datastream(content_path)
+
+=begin
+book = Book.new
+book.bookContent.content = File.open('../../data-fulton-bag/ms004/ms004-001.pdf')
+ds = book.create_datastream(ActiveFedora::Datastream, "bookContent01")
+book.add_datastream(ds)
+book.datastreams['bookContent01'].content = File.open('../../data-fulton-bag/ms004/ms004-002.pdf')
+book.save
+=end
+
     end
   end
 
 end
 
-record_parser = RecordParser.new(record_set)
+RecordParser.new(record_set)
