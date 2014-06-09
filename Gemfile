@@ -31,8 +31,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 # Use Devise for Access Controls
-gem "devise"
-gem "devise-guests", "~> 0.3"
+gem 'devise'
+gem 'devise-guests', '~> 0.3'
+
+# Use Rubyzip for Compression
+gem 'rubyzip'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
