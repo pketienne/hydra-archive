@@ -7,70 +7,52 @@ require 'nokogiri'
 # Define Importer Class
 class Importer
 
-  def initialize(origin, destination = ".tmp")
-    @origin = nil
-    @root_archive = nil
-    @destination = nil
-    @archives = []
+  # Define constant for unzip location
+  DESTINATION = ".tmp"
 
-    calculate_origin(origin)
-    calculate_archive_index(origin)
-    calculate_destination(destination)
-    build_archives
-  end
+  # Define Instance Variables
+  @base = nil
+  @filename = nil
+  @extension = nil
+  @fs_filelist = []
+  @md_filelist = []
+  @index = nil
+  
+  # Initialize Class Instance
+  def initialize(filepath)
 
-  def calculate_origin(origin)
-    # This refers to the base directory of the aip export. It is calculated by
-    # capturing the path location left of the last file separator.
-    @origin = origin.slice(0, origin.rindex('/'))
-  end
+    # Set @base to archive base directory
+    @base = filepath.slice(0, filepath.rindex('/'))
 
-  def calculate_archive_index(origin)
-    # This refers to the path of the archive's index package. This package is named
-    # by the user at the time of AIP package creation. It is calculated by capturing
-    # the path location right of the last file separator.
-    @root_archive = origin.slice((origin.rindex('/') + 1), origin.length)
-  end
+    # Set @extension to archive file extension name
+    @extension = filepath.slice((filepath.rindex('.') + 1), filepath.length)
 
-  def calculate_destination(destination)
-    # This refers to the temp directory where the archive packages will be unzipped
-    # and later read in. It is an optional parameter when lauching the batch import
-    # tool. If absent, will default to ".tmp" of the origin directory.
-    if destination == ".tmp"
-      @destination = "#{@origin}/#{destination}"
-    else
-      @destination = destination
-    end
-  end
+    # Set @filename to archive file name, sans extension
+    @filename = filepath.gsub("#{@base}/",'').gsub(".#{@extension}",'')
 
-  def build_archives
-    # This creates an array of Archive objects built from references to the archival
-    # packages found within the specified filesystem location.
-    archive_files = Dir.enteries(@origin).delete(".").delete("..").delete(@destination)
-    archive_files.each do |arc|
-      origin = "#{@origin}/#{arc}"
-      folder = arc.gsub('.zip','')
-      destination = "#{@destination}/#{folder}"
-      @archives << Archive.new(origin, destination)
-    end
+    # Make sure temp directory is fresh
+    FileUtils.rm_rf("#{@base}/#{DESTINATION}")
+
+    # Populate @fs_filelist with list of archives found on the filesystem
+    @fs_filelist = Dir.entries(@base).reject { |e| e == "." || e == ".." }
+
+    # Slice off @fs_filelist entries' file extensions
+    @fs_filelist.map! { |f| f.gsub(".#{@extension}","") }
+
+    # Create new Index object to parse metadata, compare to filesystem, and hold records
+    @index = Index.new(@base, @filename, @extension, DESTINATION)
+
+    # puts "Base = #{@base}\n\n"
+    # puts "Filename = #{@filename}\n\n"
+    # puts "Extension = #{@extension}\n\n"
+    # puts "Filesystem File List =\n#{@fs_filelist}"
   end
 
 end
 
 
 # Define Archive Class
-class Archive
-
-  def initialize(origin, destination)
-    @origin_path = origin
-    @origin_file = nil
-    @destination_path = destination
-    @destination_file = nil
-    @metadata_file = nil
-    @contents_files = nil
-
-    # process
-  end
+class Utility
 
   def unzip_file(file, destination)
     Zip::File.open(file) { |zip_file|
@@ -82,26 +64,39 @@ class Archive
     }
   end
 
-  
-
 end
 
 
 # Define Index Class
-class ImportIndex
+class Index < Utility
 
-  def initialize(dir, name, file)
-    f = File.open("#{dir}/#{UNZIP_DIR}/#{name}/mets.xml")
+  # Define Class Readers, Writers, & Accessors
+  attr_reader :md_filelist
+
+  # Define Class Constants
+  XPATH = "/mets/structMap[@LABEL='DSpace Object']/div[@TYPE='DSpace Object Contents']/div[@TYPE='DSpace ITEM']/mptr[@LOCTYPE='URL']"
+
+  # Define Instance Variables
+  @doc = nil
+  @md_filelist = []
+  @communities = []
+  @collections = []
+  @items = []
+
+  def initialize(base, filename, extension, destination)
+    from_path = "#{base}/#{filename}.#{extension}"
+    to_path = "#{base}/#{destination}/#{filename}"
+    unzip_file(from_path, to_path)
+
+    f = File.open("#{to_path}/mets.xml")
     @doc = Nokogiri::XML(f)
-    @doc.remove_namespaces!
     f.close
-    @xpath = "/mets/structMap[@LABEL='DSpace Object']/div[@TYPE='DSpace Object Contents']/div[@TYPE='DSpace ITEM']/mptr[@LOCTYPE='URL']"
-    @items = []
 
-    @doc.xpath(@xpath).each do |r|
-      puts r.xpath('@href')
-      file = File.open(
-      @items << ItemRecord.new
+    @doc.xpath(XPATH).each do |e|
+      href = e.xpath("@href")
+      href.slice!(href.rindex("."), href.length)
+      puts href
+      # md_filelist << e.xpath("@href")
     end
   end
 
@@ -109,17 +104,17 @@ end
 
 
 # Define Community Class
-class Community
+class Community < Utility
 end
 
 
 # Define Collection Class
-class Collection
+class Collection < Utility
 end
 
 
 # Define Item Class
-class Item
+class Item < Utility
 end
 
 
